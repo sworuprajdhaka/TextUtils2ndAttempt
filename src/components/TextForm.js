@@ -46,7 +46,7 @@ export default function TextForm(props) {
   return (
     <>
     <div className="container" mode={props.toggleMode}>
-    <h1>{props.heading}</h1>
+    <h1 className={`text-${props.mode=='dark'?'light':'dark'}`}>{props.heading}</h1>
 <div className="mb-3">
   <textarea className="form-control"  value={text} onChange={handleOnChange} mode={props.toggleMode} id="exampleFormControlTextarea1" rows="8"></textarea>
   </div>
@@ -58,7 +58,7 @@ export default function TextForm(props) {
 </div>
 <div className='container my-3' style={{color:props.mode==='dark'?'white':'black'}}>
     <h2>Your text summary</h2>
-    <p>{text.split(" ").length} words and {text.length} characters</p>
+    <p>{text.split(" ").filter(item=>{return item!==''}).length} words and {text.length} characters</p>
     <p>{0.008*text.split(" ").length} minutes to read</p>
     <h2>Preview</h2>
     <p>{text.length>0?text:"Enter something to preview it here"}</p>
